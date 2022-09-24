@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <canvas id="boid-simulation" width="500px" height="500px" style="border: 1px solid black;"></canvas>
+    </body>
+</html>
+
+<script type="module">
+
+    import {BoidController} from './src/boidController.js';
+    
+    const canvas = document.getElementById("boid-simulation");
+    const numBoids = 25;
+    const controller = new BoidController(numBoids);
+
+    function draw(){
+        if (canvas.getContext){
+            const context = canvas.getContext('2d');
+            for (var i = 0; i < controller.getBoids().length; i++){
+                var boid = controller.getBoids()[i];
+                context.fillRect(boid.getPosition().x, boid.getPosition().y, 5, 5);
+            }
+        }
+    }
+
+    setTimeout(draw, 1000);
+
+</script>
